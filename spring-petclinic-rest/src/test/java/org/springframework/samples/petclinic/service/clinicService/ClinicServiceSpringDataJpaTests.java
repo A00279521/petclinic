@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
  */
 
 @SpringBootTest
-@ActiveProfiles({"spring-data-jpa", "hsqldb"})
+@ActiveProfiles({"spring-data-jpa", "mysql"})
 class ClinicServiceSpringDataJpaTests extends AbstractClinicServiceTests {
 
 }
