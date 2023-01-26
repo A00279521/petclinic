@@ -1,4 +1,4 @@
 
-# petclinic.
+# petclinic
 
 
