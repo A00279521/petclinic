@@ -23,8 +23,8 @@ services:
     build: ./spring-petclinic-rest
     # image: openjdk-spring-petclinic-rest:latest  
     image: cathysimms/spring-petclinic-rest:latest
-    depends_on:
-     - petclinic
+#     depends_on:
+#      - petclinic
     networks: 
      - my_network
     ports:
