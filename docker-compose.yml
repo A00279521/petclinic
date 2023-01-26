@@ -14,17 +14,19 @@ services:
       published: 8080
       protocol: tcp
   backend:
-    # environment:
-    #   # MYSQL_DATABASE: 'petclinic'
-    #   USER_NAME: ${MY_USER}
-    #   USER_PASSWORD: ${MY_PASSWORD}
-    #   # MYSQL_ROOT_PASSWORD: ${MY_PASSWORD}
+    environment:
+      # MYSQL_DATABASE: 'petclinic'
+      # USER_NAME: ${MY_USER}
+      # USER_PASSWORD: ${MY_PASSWORD}
+      USER_NAME: 'peter'
+      USER_PASSWORD: 'password'
+      # MYSQL_ROOT_PASSWORD: ${MY_PASSWORD}
     container_name: spring-petclinic-rest
     build: ./spring-petclinic-rest
     # image: openjdk-spring-petclinic-rest:latest  
     image: cathysimms/spring-petclinic-rest:latest
-    # depends_on:
-    #  - petclinic
+    depends_on:
+     - petclinic
     networks: 
      - my_network
     ports:
@@ -46,31 +48,31 @@ services:
       target: /etc/nginx/nginx.conf
    depends_on:
     - backend
-    
-
-#   petclinic:
-#     build: ./spring-database
-#     # image: mysql:5.7.8
-#     restart: always
-#     networks: 
-#      - default
-#      - my_network
-#     environment:
-#       MYSQL_DATABASE: 'petclinic'
-#       MYSQL_USER: ${MY_USER}
-#       MYSQL_PASSWORD: ${MY_PASSWORD}
-#       MYSQL_ROOT_PASSWORD: ${R_PASSWORD}    
-#     ports:
-#       - '3306:3306'
-#     expose:
-#       - '3306'
-#     volumes:
-#       - mysql-db:/var/lib/mysql
+  petclinic:
+    build: ./spring-database
+    # image: mysql:5.7.8
+    restart: always
+    networks: 
+     - default
+     - my_network
+    environment:
+      MYSQL_DATABASE: 'petclinic'
+      # MYSQL_USER: ${MY_USER}
+      # MYSQL_PASSWORD: ${MY_PASSWORD}
+      # MYSQL_ROOT_PASSWORD: ${R_PASSWORD} 
+      MYSQL_USER: 'peter'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password' 
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - mysql-db:/var/lib/mysql
 
 # Names our volume
 volumes:
    mysql-db:
-
 networks:
   my_network:
     
